@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getProducts } from "../api/productsApi";
 import type { Product } from "../types/Product";
@@ -21,20 +22,24 @@ function Home() {
     return <h2>Something went wrong loading products.</h2>;
   }
 
- return (
-  <div>
-    <h1>Products</h1>
+  return (
+    <div>
+      <h1>Products</h1>
 
-    <div className="product-grid">
-      {products?.map((product: Product) => (
-        <ProductCard
-          key={product.id}
-          product={product}
-        />
-      ))}
+      <Link to="/cart">
+        View Cart
+      </Link>
+
+      <div className="product-grid">
+        {products?.map((product: Product) => (
+          <ProductCard
+            key={product.id}
+            product={product}
+          />
+        ))}
+      </div>
     </div>
-  </div>
-);
+  );
 }
 
 export default Home;
